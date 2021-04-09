@@ -333,7 +333,7 @@ var CommandHandler = /** @class */ (function () {
     }
     CommandHandler.prototype.registerCommand = function (instance, client, file, fileName) {
         return __awaiter(this, void 0, void 0, function () {
-            var configuration, _a, name, category, commands, aliases, init, callback, execute, run, error, description, requiredPermissions, permissions, testOnly, slash, expectedArgs, minArgs, callbackCounter, names, _i, _b, perm, missing, slashCommands, options, split, a, item, _c, _d, id, hasCallback, command, _e, names_1, name_2;
+            var configuration, _a, name, category, commands, aliases, init, callback, execute, run, error, description, requiredPermissions, permissions, testOnly, slash, expectedArgs, minArgs, callbackCounter, names, _i, _b, perm, missing, slashCommands, options, split, a, item, _c, _d, id, hasCallback, command, _e, names_1, name_2, _options_;
             return __generator(this, function (_f) {
                 switch (_f.label) {
                     case 0:
@@ -342,7 +342,7 @@ var CommandHandler = /** @class */ (function () {
                         if (configuration.default && Object.keys(configuration).length === 1) {
                             configuration = configuration.default;
                         }
-                        _a = configuration.name, name = _a === void 0 ? fileName : _a, category = configuration.category, commands = configuration.commands, aliases = configuration.aliases, init = configuration.init, callback = configuration.callback, execute = configuration.execute, run = configuration.run, error = configuration.error, description = configuration.description, requiredPermissions = configuration.requiredPermissions, permissions = configuration.permissions, testOnly = configuration.testOnly, slash = configuration.slash, expectedArgs = configuration.expectedArgs, minArgs = configuration.minArgs;
+                        _a = configuration.name, name = _a === void 0 ? fileName : _a, category = configuration.category, commands = configuration.commands, aliases = configuration.aliases, init = configuration.init, callback = configuration.callback, execute = configuration.execute, run = configuration.run, error = configuration.error, description = configuration.description, requiredPermissions = configuration.requiredPermissions, permissions = configuration.permissions, testOnly = configuration.testOnly, slash = configuration.slash, expectedArgs = configuration.expectedArgs, minArgs = configuration.minArgs, _options_ = configuration.custom_commands;
                         callbackCounter = 0;
                         if (callback)
                             ++callbackCounter;
@@ -399,7 +399,9 @@ var CommandHandler = /** @class */ (function () {
                         }
                         slashCommands = instance.slashCommands;
                         options = [];
-                        if (expectedArgs) {
+                        if (_options_) {
+                          options = _options_
+                        } else if (expectedArgs) {
                             split = expectedArgs
                                 .substring(1, expectedArgs.length - 1)
                                 .split(/[>\]] [<\[]/);
